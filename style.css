@@ -13,7 +13,7 @@
   }*/
   
   #timer {
-    font-size: 14px;
+    font-size: 25px;
   }
   
   #buttons {
@@ -32,18 +32,32 @@
     color: #fff;
     background-color: #1abc9c;
     cursor: pointer;*/
+    height: 50px;
+    width: 50px;
+    vertical-align: top;
   }
   
   button:last-child {
     margin-right: 0;
   }
 
+  select {
+    font-size: 25px;
+    height: 50px;
+  }
+
+  .input-container {
+    font-size: 25px;
+  }
+
   input[type="number"] {
     width: 31px;
-    font-size: 14px;
+    font-size: 25px;
     /*border-radius: 5px;*/
     /*border: none;*/
     text-align: center;
+    height: 45px;
+    width: 50px;
   }
 
   input[type="file"] {
@@ -66,8 +80,10 @@
     margin-bottom: 5px;
     overflow: hidden;
     border: 1px solid lightgray;
-    font-size: 14px;
+    font-size: 20px;
     color: gray;
+    text-align: center;
+    line-height: 90vh; /* Set the line-height equal to the container height to center the text vertically */
     /*padding-bottom: 75%;*/ /* Change this value to match the aspect ratio of your image */
   }
   
@@ -84,14 +100,15 @@
     height: 100%;*/
     /*border: 1;*/
   }
-    
-  .input-container {
-    margin-bottom: 10px;
+
+  #upload-message {
+    display: inline-block; /* Make the message a block-level element */
+    vertical-align: middle; /* Vertically center the message within the container */
+    line-height: normal; /* Reset the line-height to normal to prevent additional vertical space */
   }
-  
+    
   .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-

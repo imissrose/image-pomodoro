@@ -144,6 +144,7 @@ document.getElementById("image-input").addEventListener("change", function(event
   const imageUrl = URL.createObjectURL(file);
   image.src = imageUrl;
   imageWidth = image.offsetWidth;
+  document.getElementById('upload-message').innerText = "";
   //console.log('imageWidth', imageWidth);
   //console.log('image.height', image.height);
   //imageBox.imageWidth = imageWidth;
@@ -167,11 +168,6 @@ document.getElementById("image-input").addEventListener("change", function(event
 
 });
 
-// Add event listeners
-imageBox.addEventListener('dblclick', function() {
-    document.getElementById('image-input').click();
-  });
-
 minutesInput.addEventListener('input', function() {
   minutesInput.value = padNumber(minutesInput.value);
 });
@@ -179,3 +175,49 @@ minutesInput.addEventListener('input', function() {
 secondsInput.addEventListener('input', function() {
   secondsInput.value = padNumber(secondsInput.value);
 });
+/*
+// Add event listeners
+imageBox.addEventListener('dblclick', function() {
+  document.getElementById('image-input').click();
+});*/
+
+let isTouchDevice = ('ontouchstart' in document.documentElement);
+let lastClickTime = 0;
+
+if (isTouchDevice) {
+  // Touch-based devices
+  let touchStart, touchEnd;
+
+  imageBox.addEventListener('touchstart', function(event) {
+    touchStart = new Date().getTime();
+  });
+
+  imageBox.addEventListener('touchend', function(event) {
+    touchEnd = new Date().getTime();
+    if (touchEnd - touchStart < 500) {
+      let currentTime = new Date().getTime();
+      if (currentTime - lastClickTime < 500) {
+        // Perform double-click logic
+        document.getElementById('image-input').click();
+
+        lastClickTime = 0;
+      } else {
+        // Perform single-click logic
+        lastClickTime = currentTime;
+      }
+    }
+  });
+} else {
+  // Mouse-based devices
+  imageBox.addEventListener('mousedown', function(event) {
+    if (event.detail === 2) {
+      // Perform double-click logic
+      document.getElementById('image-input').click();
+
+    }
+  });
+
+  imageBox.addEventListener('click', function(event) {
+    // Perform single-click logic
+  });
+}

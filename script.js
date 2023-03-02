@@ -26,7 +26,7 @@ let revealType;
 
 // Functions
 function startTimer() {
-  if (!timerId) {console.log('timerId', timerId);
+  if (!timerId) {
     revealType = selectBox.value;
     initMinutes = minutesInput.value;
     initSeconds = parseInt(secondsInput.value);
@@ -186,27 +186,22 @@ let lastClickTime = 0;
 
 if (isTouchDevice) {
   // Touch-based devices
-  let touchStart, touchEnd;
+  let timer;
 
-  imageBox.addEventListener('touchstart', function(event) {
-    touchStart = new Date().getTime();
+  imageBox.addEventListener('mousedown', function() {
+    timer = setTimeout(function() {
+      // Perform long-press logic
+      document.getElementById('image-input').click();
+
+    }, 500); // Long-press duration (in milliseconds)
   });
 
-  imageBox.addEventListener('touchend', function(event) {
-    touchEnd = new Date().getTime();
-    if (touchEnd - touchStart < 500) {
-      let currentTime = new Date().getTime();
-      if (currentTime - lastClickTime < 500) {
-        // Perform double-click logic
-        document.getElementById('image-input').click();
-
-        lastClickTime = 0;
-      } else {
-        // Perform single-click logic
-        lastClickTime = currentTime;
-      }
-    }
+  imageBox.addEventListener('mouseup', function() {
+    clearTimeout(timer);
   });
+
+  document.getElementById('upload-message').innerText = 'Long press to add an image.';
+
 } else {
   // Mouse-based devices
   imageBox.addEventListener('mousedown', function(event) {
@@ -220,4 +215,6 @@ if (isTouchDevice) {
   imageBox.addEventListener('click', function(event) {
     // Perform single-click logic
   });
+
+  document.getElementById('upload-message').innerText = 'Double-click here to add an image.';
 }

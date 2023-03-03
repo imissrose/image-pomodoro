@@ -126,7 +126,7 @@ function padNumber(number) {
   if (number < 10) {
     return "0" + parseInt(number);
   } else {
-    return number;
+    return "" + parseInt(number);
   }
 }
   
@@ -288,6 +288,19 @@ function loadTimerSettings() {
   if (isWebBrowser) {
     // check if cookies exist and get their values
     if (document.cookie) {
+      const data = JSON.parse(document.cookie);
+      if (data) {
+        /*image.src = data.imagePath;
+        image.addEventListener('error', function() {
+          image.src = '';
+        });*/
+        selectBox.value = data.imageEffect;
+        minutesInput.value = data.minutes;
+        secondsInput.value = data.seconds;
+        messageInput.value = data.message;
+        toggleSwitch.checked = (data.notifications==="true")?true:false;
+      }
+      /*
       const cookies = document.cookie.split(';');
       cookies.forEach(cookie => {
         const [name, value] = cookie.trim().split('=');
@@ -311,7 +324,7 @@ function loadTimerSettings() {
             toggleSwitch.checked = (value==="true")?true:false;
             break;
         }
-      });
+      });*/
     }
 
   } else {

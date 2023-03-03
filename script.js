@@ -9,6 +9,8 @@ const pauseButton = document.getElementById("pause");
 const stopButton = document.getElementById("stop");
 const selectBox = document.getElementById("image-effect");
 const imageBox = document.querySelector('.image-container');
+const messageInput = document.getElementById("message");
+const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
 
 // Set default values
 let minutes = 0;
@@ -47,6 +49,8 @@ function startTimer() {
     selectBox.disabled = true;
     minutesInput.disabled = true;
     secondsInput.disabled = true;
+
+    saveTimerSettings();
   } else {
     timerId = setInterval(updateTimer, 1000);
   }
@@ -97,6 +101,10 @@ function updateTimer() {
       startButton.disabled = true;
       pauseButton.disabled = true;
       stopButton.disabled = false;
+
+      if (toggleSwitch.checked) {
+        showModal(messageInput.value);
+      }
     } else {
       minutes--;
       seconds = 59;
@@ -168,6 +176,31 @@ document.getElementById("image-input").addEventListener("change", function(event
 
 });
 
+function showModal(message) {
+  var modal = document.querySelector('.modal');
+  var modalMessage = document.querySelector('.modal-message');
+  var modalClose = document.querySelector('.modal-close');
+
+  modal.style.display = 'block';
+  modalMessage.textContent = message;
+
+  modalClose.onclick = function() {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
+}
+
+document.addEventListener('load', function() {
+  // code to be executed when the document is fully loaded
+  loadTimerSettings();
+});
+
+// 분, 초를 두자리로 보여줌
 minutesInput.addEventListener('input', function() {
   minutesInput.value = padNumber(minutesInput.value);
 });
@@ -175,29 +208,33 @@ minutesInput.addEventListener('input', function() {
 secondsInput.addEventListener('input', function() {
   secondsInput.value = padNumber(secondsInput.value);
 });
-/*
-// Add event listeners
-imageBox.addEventListener('dblclick', function() {
-  document.getElementById('image-input').click();
-});*/
 
+toggleSwitch.addEventListener('change', function() {
+  if (toggleSwitch.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }  
+});
+
+
+// image-container를 더블클릭/롱프레스시 이미지 첨부
 let isTouchDevice = ('ontouchstart' in document.documentElement);
 let lastClickTime = 0;
 
 if (isTouchDevice) {
   // Touch-based devices
-  let timer;
+  let pressTimer;
 
-  imageBox.addEventListener('mousedown', function() {
-    timer = setTimeout(function() {
+  imageBox.addEventListener('touchstart', function(event) {
+    pressTimer = setTimeout(function() {
       // Perform long-press logic
       document.getElementById('image-input').click();
-
     }, 500); // Long-press duration (in milliseconds)
   });
 
-  imageBox.addEventListener('mouseup', function() {
-    clearTimeout(timer);
+  imageBox.addEventListener('touchend', function(event) {
+    clearTimeout(pressTimer);
   });
 
   document.getElementById('upload-message').innerText = 'Long press to add an image.';
@@ -217,4 +254,81 @@ if (isTouchDevice) {
   });
 
   document.getElementById('upload-message').innerText = 'Double-click here to add an image.';
+}
+
+// 쿠키, Localstorage에 저장
+// Check if running in a web browser or application
+const isWebBrowser = (window.location.protocol.startsWith('http') || window.location.hostname === 'localhost');
+
+function saveTimerSettings() {
+  // Save data to cookie or localstorage
+  const data = {
+    //imagePath: `${image.src}`,
+    imageEffect: `${selectBox.value}`,
+    minutes: `${minutesInput.value}`,
+    seconds: `${secondsInput.value}`,
+    message: `${messageInput.value}`,
+    notifications: `${toggleSwitch.checked}`
+  };
+
+  if (isWebBrowser) {
+    // Set cookie expiration to 14 days
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 14);
+
+    // Save data to cookie
+    document.cookie = `pomodoroData=${JSON.stringify(data)};expires=${expirationDate.toUTCString()};path=/`;
+  } else {
+    // Save data to local storage
+    localStorage.setItem('pomodoroData', JSON.stringify(data));
+  }
+}
+
+function loadTimerSettings() {
+  if (isWebBrowser) {
+    // check if cookies exist and get their values
+    if (document.cookie) {
+      /*image.src = getCookie('imagePath');
+      image.addEventListener('error', function() {
+        image.src = "";
+      });*/
+      selectBox.value = getCookie('imageEffect');
+      minutesInput.value = getCookie('minutes');
+      secondsInput.value = getCookie('seconds');
+      messageInput.value = getCookie('message');
+      toggleSwitch.checked = (getCookie('notifications')==="true")?true:false;
+    }
+
+  } else {
+    // check if localstorage exists and get their values
+    const data = JSON.parse(localStorage.getItem('pomodoroData'));
+    if (data) {
+      /*image.src = data.imagePath;
+      image.addEventListener('error', function() {
+        image.src = '';
+      });*/
+      selectBox.value = data.imageEffect;
+      minutesInput.value = data.minutes;
+      secondsInput.value = data.seconds;
+      messageInput.value = data.message;
+      toggleSwitch.checked = (data.notifications==="true")?true:false;
+    }
+  }
+}
+
+function getCookie(cookieName) {
+  const name = `${cookieName}=`;
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+  
+  for(let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return '';
 }

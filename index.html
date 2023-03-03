@@ -4,7 +4,7 @@
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body onload="loadTimerSettings()">
     <div class="container">
       <input type="file" id="image-input">
       <div class="image-container"><span id="upload-message">Double-click here to add an image.</span>
@@ -24,6 +24,20 @@
       </div>
       <!--div class="button-container">
       </div-->
+      <div class="input-container">
+        <input type="text" id="message" value="Great job! You completed the task!">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+    <div class="modal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <p class="modal-message"></p>
+        <!--button class="modal-ok">OK</button-->
+      </div>
     </div>
     <script src="https://kit.fontawesome.com/2ece379672.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>

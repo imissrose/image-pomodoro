@@ -288,15 +288,30 @@ function loadTimerSettings() {
   if (isWebBrowser) {
     // check if cookies exist and get their values
     if (document.cookie) {
-      /*image.src = getCookie('imagePath');
-      image.addEventListener('error', function() {
-        image.src = "";
-      });*/
-      selectBox.value = getCookie('imageEffect');
-      minutesInput.value = getCookie('minutes');
-      secondsInput.value = getCookie('seconds');
-      messageInput.value = getCookie('message');
-      toggleSwitch.checked = (getCookie('notifications')==="true")?true:false;
+      const cookies = document.cookie.split(';');
+      cookies.forEach(cookie => {
+        const [name, value] = cookie.trim().split('=');
+        switch (name) {
+          case 'imagePath':
+            image.src = value;
+            break;
+          case 'imageEffect':
+            selectBox.value = value;
+            break;
+          case 'minutes':
+            minutesInput.value = parseInt(value);
+            break;
+          case 'seconds':
+            secondsInput.value = parseInt(value);
+            break;
+          case 'message':
+            messageInput.value = value;
+            break;
+          case 'notifications':
+            toggleSwitch.checked = (value==="true")?true:false;
+            break;
+        }
+      });
     }
 
   } else {
@@ -316,19 +331,3 @@ function loadTimerSettings() {
   }
 }
 
-function getCookie(cookieName) {
-  const name = `${cookieName}=`;
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const cookieArray = decodedCookie.split(';');
-  
-  for(let i = 0; i < cookieArray.length; i++) {
-    let cookie = cookieArray[i];
-    while (cookie.charAt(0) === ' ') {
-      cookie = cookie.substring(1);
-    }
-    if (cookie.indexOf(name) === 0) {
-      return cookie.substring(name.length, cookie.length);
-    }
-  }
-  return '';
-}

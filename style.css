@@ -1,10 +1,17 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
 .full-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /*vertical-align: top;*/
+  vertical-align: top;
   height: 100vh;
+  width: 100vw;
 }
 
 .container {
@@ -28,7 +35,7 @@
   position: relative;
   width: 53.4vh; /*9/16vh*100*95%;*/
   height: 84vh;
-  margin-bottom: 1vh;
+  /*margin-bottom: 1vh;*/
   margin: 0.5vh;
   overflow: hidden;
   border: 1px solid lightgray;
@@ -54,7 +61,7 @@
   width: 54vh; /*9/16vh*100*95%;*/
   height: 5.5vh;
   font-size: 3vh;
-  margin-bottom: 0.5vh;
+  margin-bottom: 0vh;
   display: flex;
   justify-content: space-between;
 }
@@ -260,3 +267,25 @@ input:checked + .slider:before {
   transform: translateX(-50%);
 }*/
 /* 모달 팝업 end */
+
+.lable-container {
+  position: relative;
+  width: 53.4vh; /*9/16vh*100*95%;*/
+  height: 2vh;
+  overflow: hidden;
+  font-size: 1.6vh;
+  color: gray;
+  text-align: left;
+  vertical-align: top;
+}
+
+.timer-label {
+  text-align: left;
+  font-size: 1.6vh;
+  color: gray;
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  align-items: left;
+}

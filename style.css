@@ -1,7 +1,11 @@
+:root {
+  --user-vh: 1vh;
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
-	height: 100vh;
+	height: calc(100 * var(--user-vh));
 }
 
 .full-screen {
@@ -10,7 +14,7 @@ html, body {
   align-items: center;
   justify-content: center;
   vertical-align: top;
-  height: 100vh;
+  height: calc(100 * var(--user-vh));
   width: 100vw;
 }
 
@@ -33,16 +37,16 @@ html, body {
 
 .image-container {
   position: relative;
-  width: 53.4vh; /*9/16vh*100*95%;*/
-  height: 84vh;
+  width: calc(53.4 * var(--user-vh)); /*9/16vh*100*95%;*/
+  height: calc(84 * var(--user-vh));
   /*margin-bottom: 1vh;*/
-  margin: 0.5vh;
+  margin: calc(0.5 * var(--user-vh));
   overflow: hidden;
   border: 1px solid lightgray;
-  font-size: 2vh;
+  font-size: calc(2 * var(--user-vh));
   color: gray;
   text-align: center;
-  line-height: 84vh; /* Set the line-height equal to the container height to center the text vertically */
+  line-height: calc(84 * var(--user-vh)); /* Set the line-height equal to the container height to center the text vertically */
   /*vertical-align: top;*/
 }
 
@@ -58,29 +62,29 @@ html, body {
 }
 
 .input-container {
-  width: 54vh; /*9/16vh*100*95%;*/
-  height: 5.5vh;
-  font-size: 3vh;
-  margin-bottom: 0.2vh;
+  width: calc(54 * var(--user-vh)); /*9/16vh*100*95%;*/
+  height: calc(5.5 * var(--user-vh));
+  font-size: calc(3 * var(--user-vh));
+  margin-bottom: calc(0.2 * var(--user-vh));
   display: flex;
   justify-content: space-between;
 }
 
 button {
-  padding: 1vh;
-  padding-left: 1vh;
-  padding-right: 1vh;
+  padding: calc(1 * var(--user-vh));
+  padding-left: calc(1 * var(--user-vh));
+  padding-right: calc(1 * var(--user-vh));
   margin-right: 0%;
   border: none;
   border-radius: 5px;
-  font-size: 3vh;
+  font-size: calc(3 * var(--user-vh));
   /*font-weight: bold;*/
-  line-height: 3.8vh;
+  line-height: calc(3.8 * var(--user-vh));
   background-color: #2196F3;
   color: #fff;
   /*cursor: pointer;*/
-  height: 5.5vh;
-  width: 5.8vh;
+  height: calc(5.5 * var(--user-vh));
+  width: calc(5.8 * var(--user-vh));
   vertical-align: middle;
 }
 
@@ -90,34 +94,34 @@ button:disabled {
 }
 
 select {
-  font-size: 2.5vh;
-  height: 5.5vh;
-  width: 19vh;
+  font-size: calc(2.5 * var(--user-vh));
+  height: calc(5.5 * var(--user-vh));
+  width: calc(19 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
 }
 
 label {
-  font-size: 3vh;
-  padding-top: 0.2vh;
+  font-size: calc(3 * var(--user-vh));
+  padding-top: calc(0.2 * var(--user-vh));
 }
 
 input[type="number"] {
-  font-size: 2.5vh;
+  font-size: calc(2.5 * var(--user-vh));
   text-align: center;
-  height: 5vh;
-  width: 5.5vh;
+  height: calc(5 * var(--user-vh));
+  width: calc(5.5 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
 }
 
 input[type="text"] {
-  font-size: 2.5vh;
+  font-size: calc(2.5 * var(--user-vh));
   color: gray;
-  height: 5vh;
-  width: 43.5vh;
+  height: calc(5 * var(--user-vh));
+  width: calc(43.5 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -133,7 +137,7 @@ input[type="file"] {
 }
 
 #upload-message {
-  font-size: 2.5vh;
+  font-size: calc(2.5 * var(--user-vh));
   display: inline-block; /* Make the message a block-level element */
   vertical-align: middle; /* Vertically center the message within the container */
   line-height: normal; /* Reset the line-height to normal to prevent additional vertical space */
@@ -149,8 +153,8 @@ input[type="file"] {
 .switch {
   position: relative;
   display: inline-block;
-  width: 9vh;
-  height: 5vh;
+  width: calc(9 * var(--user-vh));
+  height: calc(5 * var(--user-vh));
 }
 
 .switch input {
@@ -166,16 +170,16 @@ input[type="file"] {
   bottom: 0;
   background-color: #ccc;
   transition: .4s;
-  border-radius: 5vh;
+  border-radius: calc(5 * var(--user-vh));
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 3.8vh;
-  width: 3.8vh;
-  left: 0.584vh;
-  bottom: 0.584vh;
+  height: calc(3.8 * var(--user-vh));
+  width: calc(3.8 * var(--user-vh));
+  left: calc(0.584 * var(--user-vh));
+  bottom: calc(0.584 * var(--user-vh));
   background-color: white;
   transition: .4s;
   border-radius: 50%;
@@ -186,7 +190,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(3.8vh);
+  transform: translateX(calc(3.8 * var(--user-vh)));
 }
 
 /* Style the on/off labels */
@@ -227,10 +231,10 @@ input:checked + .slider:before {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 5vh auto;
-  padding: 1.8vh;
+  margin: calc(5 * var(--user-vh)) auto;
+  padding: calc(1.8 * var(--user-vh));
   border: 1px solid #888;
-  width: 49vh;
+  width: calc(49 * var(--user-vh));
   max-width: 90%;
   position: relative;
   text-align: center;
@@ -238,16 +242,16 @@ input:checked + .slider:before {
 
 .modal-close {
   position: absolute;
-  top: 1vh;
-  right: 1vh;
-  font-size: 2vh;
+  top: calc(1 * var(--user-vh));
+  right: calc(1 * var(--user-vh));
+  font-size: calc(2 * var(--user-vh));
   /*font-weight: bold;*/
   cursor: pointer;
 }
 
 .modal-message {
-  font-size: 3vh;
-  margin-bottom: 2vh;
+  font-size: calc(3 * var(--user-vh));
+  margin-bottom: calc(2 * var(--user-vh));
   word-wrap: break-word;
 }
 /*
@@ -270,10 +274,10 @@ input:checked + .slider:before {
 
 .lable-container {
   position: relative;
-  width: 53.4vh; /*9/16vh*100*95%;*/
-  height: 2vh;
+  width: calc(53.4 * var(--user-vh)); /*9/16vh*100*95%;*/
+  height: calc(2 * var(--user-vh));
   overflow: hidden;
-  font-size: 1.6vh;
+  font-size: calc(1.6 * var(--user-vh));
   color: gray;
   text-align: left;
   vertical-align: bottom;
@@ -281,7 +285,7 @@ input:checked + .slider:before {
 
 .timer-label {
   text-align: left;
-  font-size: 1.6vh;
+  font-size: calc(1.6 * var(--user-vh));
   color: gray;
   margin: 0 auto;
   position: relative;

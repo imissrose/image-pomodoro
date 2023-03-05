@@ -348,3 +348,22 @@ function loadTimerSettings() {
   }
 }
 
+// viewport 사이즈에 따라 버튼, 폰트 등 변경
+// Set default user_vh value to 1
+let user_vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty("--user-vh", `${user_vh}px`);
+window.addEventListener("load", setViewportHeight);
+
+// Check if device is touch-based
+if (!isTouchDevice) {
+  // If mouse-based, set the user_vh value based on the window height when the window is resized
+  window.addEventListener("resize", setViewportHeight);
+}
+
+function setViewportHeight() {
+  // Set the user_vh value based on the window height
+  user_vh = window.innerHeight * 0.01;
+  
+  // Set the height of the viewport using the user_vh value
+  document.documentElement.style.setProperty("--user-vh", `${user_vh}px`);
+}

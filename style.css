@@ -120,7 +120,7 @@ input[type="number"] {
 input[type="text"] {
   font-size: calc(2.5 * var(--user-vh));
   color: gray;
-  height: calc(5 * var(--user-vh));
+  height: calc(4.8 * var(--user-vh));
   width: calc(43.5 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -178,8 +178,8 @@ input[type="file"] {
   content: "";
   height: calc(3.8 * var(--user-vh));
   width: calc(3.8 * var(--user-vh));
-  left: calc(0.584 * var(--user-vh));
-  bottom: calc(0.584 * var(--user-vh));
+  left: calc(0.65 * var(--user-vh));
+  bottom: calc(0.69 * var(--user-vh));
   background-color: white;
   transition: .4s;
   border-radius: 50%;

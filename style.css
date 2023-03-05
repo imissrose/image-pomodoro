@@ -240,14 +240,14 @@ input:checked + .slider:before {
   position: absolute;
   top: 1vh;
   right: 1vh;
-  font-size: 2vw;
+  font-size: 2vh;
   /*font-weight: bold;*/
   cursor: pointer;
 }
 
 .modal-message {
-  font-size: 3vw;
-  margin-bottom: 2vw;
+  font-size: 3vh;
+  margin-bottom: 2vh;
   word-wrap: break-word;
 }
 /*

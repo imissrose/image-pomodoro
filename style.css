@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /*vertical-align: top;*/
   height: 100vh;
 }
 
@@ -28,6 +29,7 @@
   width: 53.4vh; /*9/16vh*100*95%;*/
   height: 84vh;
   margin-bottom: 1vh;
+  margin: 0.5vh;
   overflow: hidden;
   border: 1px solid lightgray;
   font-size: 2vh;
@@ -48,36 +50,45 @@
   margin: auto;
 }
 
+.input-container {
+  width: 54vh; /*9/16vh*100*95%;*/
+  height: 5.5vh;
+  font-size: 3vh;
+  margin-bottom: 0.5vh;
+  display: flex;
+  justify-content: space-between;
+}
+
 button {
   padding: 1vh;
   padding-left: 1vh;
   padding-right: 1vh;
   margin-right: 0%;
-  /*border: none;*/
-  /*border-radius: 5px;*/
+  border: none;
+  border-radius: 5px;
   font-size: 3vh;
-  /*font-weight: bold;
+  /*font-weight: bold;*/
+  line-height: 3.8vh;
+  background-color: #2196F3;
   color: #fff;
-  background-color: #1abc9c;
-  cursor: pointer;*/
+  /*cursor: pointer;*/
   height: 5.5vh;
   width: 5.8vh;
-  vertical-align: top;
+  vertical-align: middle;
+}
+
+button:disabled {
+  opacity: 0.5;
+  /*cursor: not-allowed;*/
 }
 
 select {
   font-size: 3vh;
   height: 5.5vh;
   width: 19vh;
-}
-
-.input-container {
-  width: 54vh; /*9/16vh*100*95%;*/
-  height: 5.5vh;
-  font-size: 3vh;
-  margin-bottom: 1vh;
-  display: flex;
-  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
 }
 
 input[type="number"] {
@@ -85,14 +96,24 @@ input[type="number"] {
   text-align: center;
   height: 5vh;
   width: 5.5vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
 }
 
 input[type="text"] {
   font-size: 2.5vh;
   color: gray;
   height: 5vh;
-  width: 42vh;
+  width: 43.5vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
   vertical-align: top;
+}
+
+input[type="text"]:not(:focus) {
+  color: #f2f2f2; /* match the background color */
 }
 
 input[type="file"] {

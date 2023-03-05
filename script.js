@@ -18,6 +18,10 @@ let seconds = 0;
 let timerId;
 let isPaused = false;
 
+startButton.disabled = false;
+pauseButton.disabled = true;
+stopButton.disabled = true;
+
 // Add event listeners
 startButton.addEventListener("click", startTimer);
 pauseButton.addEventListener("click", pauseTimer);

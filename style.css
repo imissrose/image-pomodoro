@@ -61,7 +61,7 @@ html, body {
   width: 54vh; /*9/16vh*100*95%;*/
   height: 5.5vh;
   font-size: 3vh;
-  margin-bottom: 0vh;
+  margin-bottom: 0.2vh;
   display: flex;
   justify-content: space-between;
 }
@@ -276,7 +276,7 @@ input:checked + .slider:before {
   font-size: 1.6vh;
   color: gray;
   text-align: left;
-  vertical-align: top;
+  vertical-align: bottom;
 }
 
 .timer-label {

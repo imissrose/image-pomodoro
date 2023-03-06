@@ -128,6 +128,7 @@ input[type="text"] {
   border-radius: 5px;
   background-color: #f2f2f2;
   vertical-align: top;
+  margin-right: calc(0.2 * var(--user-vh));
 }
 
 input[type="text"]:not(:focus) {

@@ -29,7 +29,6 @@ stopButton.addEventListener("click", stopTimer);
 
 let imageWidth = 0;
 let revealType;
-
 // Functions
 function startTimer() {
   if (!timerId) {
@@ -38,15 +37,15 @@ function startTimer() {
     initSeconds = parseInt(secondsInput.value);
     minutes = initMinutes;
     seconds = initSeconds;
-    if (revealType === "gradual") {
+    
+    if (revealType === "fade-in") {
       image.style.opacity = 0;
-      image.style.clipPath = `inset(0 0 0 0)`;
+    } else if (revealType === "zoom-in") {
+      image.style.transform = `scale(0)`;
     } else if (revealType === "top-down") {
       image.style.clipPath = `inset(0 0 100% 0)`;
-      image.style.opacity = 1;
     } else if (revealType === "bottom-up") {
       image.style.clipPath = `inset(100% 0 0 0)`;
-      image.style.opacity = 1;
     }
     timerId = setInterval(updateTimer, 1000);
     
@@ -94,6 +93,9 @@ function stopTimer() {
   selectBox.disabled = false;
   minutesInput.disabled = false;
   secondsInput.disabled = false;
+  image.style.opacity = 1;
+  image.style.transform = '';
+  image.style.clipPath = '';
 }
 
 function updateTimer() {
@@ -105,6 +107,11 @@ function updateTimer() {
       startButton.disabled = true;
       pauseButton.disabled = true;
       stopButton.disabled = false;
+
+      if ('ontouchstart' in window) {
+        // Device is touch-based
+        showNotification();
+      } 
 
       if (toggleSwitch.checked) {
         showModal(messageInput.value);
@@ -139,9 +146,11 @@ function updateImageDisplay() {
   const totalSeconds = minutes * 60 + seconds;
   const percentComplete = totalSeconds / initialSeconds;
 
-  if (revealType === "gradual") {
-    let opacity = (initialSeconds - totalSeconds) / initialSeconds;
+  if (revealType === "fade-in") {
+    let opacity = 1-percentComplete;
     image.style.opacity = opacity;
+  } else if (revealType === "zoom-in") {
+    image.style.transform = `scale(${1-percentComplete})`;
   } else if (revealType === "top-down") {
     image.style.clipPath = `inset(0 0 ${percentComplete * 100}% 0)`;
   } else if (revealType === "bottom-up") {
@@ -198,6 +207,25 @@ function showModal(message) {
     }
   };
 }
+
+// 타이머 종료시 핸드폰 깜빡임
+function showNotification() {
+  if ('Notification' in window) {
+    Notification.requestPermission().then(function(permission) {
+      if (permission === 'granted') {
+        var notification = new Notification('Timer ended', {
+          body: 'Your timer has ended!',
+          //icon: 'path/to/icon.png'
+        });
+        notification.onclick = function() {
+          window.focus();
+          this.close();
+        };
+      }
+    });
+  }
+}
+
 
 document.addEventListener('load', function() {
   // code to be executed when the document is fully loaded
@@ -304,31 +332,6 @@ function loadTimerSettings() {
         messageInput.value = data.message;
         toggleSwitch.checked = (data.notifications==="true")?true:false;
       }
-      /*
-      const cookies = document.cookie.split(';');
-      cookies.forEach(cookie => {
-        const [name, value] = cookie.trim().split('=');
-        switch (name) {
-          case 'imagePath':
-            image.src = value;
-            break;
-          case 'imageEffect':
-            selectBox.value = value;
-            break;
-          case 'minutes':
-            minutesInput.value = parseInt(value);
-            break;
-          case 'seconds':
-            secondsInput.value = parseInt(value);
-            break;
-          case 'message':
-            messageInput.value = value;
-            break;
-          case 'notifications':
-            toggleSwitch.checked = (value==="true")?true:false;
-            break;
-        }
-      });*/
     }
 
   } else {

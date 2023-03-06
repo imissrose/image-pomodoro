@@ -62,7 +62,7 @@ html, body {
 }
 
 .input-container {
-  width: calc(54 * var(--user-vh)); /*9/16vh*100*95%;*/
+  width: calc(53.4 * var(--user-vh)); /*9/16vh*100*95%;*/
   height: calc(5.5 * var(--user-vh));
   font-size: calc(3 * var(--user-vh));
   margin-bottom: calc(0.2 * var(--user-vh));

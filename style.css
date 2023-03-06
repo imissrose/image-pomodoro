@@ -37,7 +37,8 @@ html, body {
 
 .image-container {
   position: relative;
-  width: calc(53.4 * var(--user-vh)); /*9/16vh*100*95%;*/
+  /*width: calc(53.4 * var(--user-vh));*/ /*9/16vh*100*95%=53.4*/
+  width: calc(95 * var(--user-vw));
   height: calc(84 * var(--user-vh));
   /*margin-bottom: 1vh;*/
   margin: calc(0.5 * var(--user-vh));

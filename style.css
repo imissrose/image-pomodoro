@@ -276,7 +276,8 @@ input:checked + .slider:before {
 
 .lable-container {
   position: relative;
-  width: calc(53.4 * var(--user-vh)); /*9/16vh*100*95%;*/
+  /*width: calc(53.4 * var(--user-vh));*/ /*9/16vh*100*95%;*/
+  width: calc(95 * var(--user-vw));
   height: calc(2 * var(--user-vh));
   overflow: hidden;
   font-size: calc(1.6 * var(--user-vh));

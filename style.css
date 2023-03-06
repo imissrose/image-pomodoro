@@ -123,7 +123,7 @@ input[type="text"] {
   font-size: calc(2.5 * var(--user-vh));
   color: gray;
   height: calc(4.8 * var(--user-vh));
-  width: calc(43.5 * var(--user-vh));
+  width: calc(43 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;

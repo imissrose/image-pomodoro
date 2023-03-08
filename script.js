@@ -53,6 +53,7 @@ function startTimer() {
     minutesInput.disabled = true;
     secondsInput.disabled = true;
 
+    showInputCover();
     saveTimerSettings();
   } else {
     timerId = setInterval(updateTimer, 1000);
@@ -96,6 +97,7 @@ function stopTimer() {
   image.style.opacity = 1;
   image.style.transform = '';
   image.style.clipPath = '';
+  hideInputCover();
 }
 
 function updateTimer() {
@@ -108,10 +110,7 @@ function updateTimer() {
       pauseButton.disabled = true;
       stopButton.disabled = false;
 
-      if ('ontouchstart' in window) {
-        // Device is touch-based
-        showNotification();
-      } 
+      showNotification();
 
       if (toggleSwitch.checked) {
         showModal(messageInput.value);
@@ -210,6 +209,24 @@ function showModal(message) {
 
 // 타이머 종료시 핸드폰 깜빡임
 function showNotification() {
+  /*
+  // Add blinking light effect
+  let intervalId;
+  let blinkDuration = 1000; // blink every second
+  let blinkCount = 10; // blink for 10 seconds
+  let blinkColor = 'red'; // color to blink
+  let bodyEl = document.querySelector('body'); // select body element
+  
+  // start blinking
+  intervalId = setInterval(() => {
+    bodyEl.style.backgroundColor = bodyEl.style.backgroundColor === blinkColor ? '' : blinkColor;
+    blinkCount--;
+    if (blinkCount === 0) clearInterval(intervalId); // stop blinking after 10 seconds
+  }, blinkDuration);*/
+
+  // If it's not touch base, return
+  if (!('ontouchstart' in window)) return;
+
   if ('Notification' in window) {
     Notification.requestPermission().then(function(permission) {
       if (permission === 'granted') {
@@ -286,6 +303,16 @@ if (isTouchDevice) {
   });
 
   document.getElementById('upload-message').innerText = 'Double-click here to add an image.';
+}
+
+function showInputCover() {
+  let inputCover = document.getElementById("input-cover");
+  inputCover.style.display = "block";
+}
+
+function hideInputCover() {
+  let inputCover = document.getElementById("input-cover");
+  inputCover.style.display = "none";
 }
 
 // 쿠키, Localstorage에 저장

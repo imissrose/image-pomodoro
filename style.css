@@ -28,6 +28,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
   width: 100%;
   max-width: 645px;
 }
@@ -45,7 +46,7 @@ html, body {
   width: calc(95 * var(--user-vw));
   height: calc(84 * var(--user-vh));
   /*margin-bottom: 1vh;*/
-  margin: calc(0.5 * var(--user-vh));
+  margin-bottom: calc(0.5 * var(--user-vh));
   overflow: hidden;
   border: 1px solid lightgray;
   font-size: calc(2 * var(--user-vh));
@@ -316,6 +317,8 @@ input:checked + .slider:before {
 
 .nav{
   position: fixed;
+  /*top: calc((84.5+5.7) * var(--user-vh));*/
+  top: calc(93.3 * var(--user-vh));
   bottom: 0;
   width: 100%;
   background-color: #f9f9fa;

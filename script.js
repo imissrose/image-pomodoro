@@ -307,12 +307,16 @@ if (isTouchDevice) {
 
 function showInputCover() {
   let inputCover = document.getElementById("input-cover");
+  let lableCover = document.getElementById("lable-cover");
   inputCover.style.display = "block";
+  lableCover.style.display = "block";
 }
 
 function hideInputCover() {
   let inputCover = document.getElementById("input-cover");
+  let lableCover = document.getElementById("lable-cover");
   inputCover.style.display = "none";
+  lableCover.style.display = "none";
 }
 
 // 쿠키, Localstorage에 저장
@@ -379,17 +383,6 @@ function loadTimerSettings() {
 }
 
 // viewport 사이즈에 따라 버튼, 폰트 등 변경
-// Set default user_vh value to 1
-window.addEventListener("load", setViewportHeight);
-/*let user_vh = window.innerHeight * 0.01;
-let user_vw = window.innerWidth * 0.01;
-
-if (user_vw >= user_vh*9/16) {
-  user_vw = user_vh*9/16;
-}
-
-document.documentElement.style.setProperty("--user-vh", `${user_vh}px`);
-document.documentElement.style.setProperty("--user-vw", `${user_vw}px`);*/
 window.addEventListener("load", setViewportHeight);
 
 // Check if device is touch-based
@@ -400,8 +393,9 @@ if (!isTouchDevice) {
 
 function setViewportHeight() {
   // Set the user_vh value based on the window height
-  user_vh = window.innerHeight * 0.01;
-  user_vw = window.innerWidth * 0.01;
+  let user_vh = window.innerHeight * 0.01;
+  let user_vw = window.innerWidth * 0.01;
+  let user_ramain_vh;
 
   if (user_vw > user_vh*9/16) {
     user_vw = user_vh*9/16;
@@ -409,6 +403,13 @@ function setViewportHeight() {
 
   if (user_vh > user_vw*16/9) {
     user_vh = user_vw*16/9;
+  }
+
+  user_ramain_vh = (window.innerHeight * 0.01 - user_vh)*100;
+  
+  if (user_ramain_vh > 0) {
+    document.documentElement.style.setProperty("--user-remain-vh", `${user_ramain_vh}px`);
+    
   }
   
   // Set the height of the viewport using the user_vh value

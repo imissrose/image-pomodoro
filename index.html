@@ -8,6 +8,7 @@
   <body onload="loadTimerSettings()">
     <div class="full-screen">
     <div class="container">
+      <div class="remain-space"></div>
       <input type="file" id="image-input">
       <div class="image-container"><span id="upload-message">Double-click here to add an image.</span>
         <img id="image">
@@ -30,12 +31,15 @@
       <!--div class="button-container">
       </div-->
       <div class="lable-container">
-      <div class="timer-label">
-        Motivational message on timer completion
-      </div></div>
+        <div id="lable-cover">&#4502;</div>
+        <div class="timer-label">
+          Motivational message on timer completion
+        </div>
+        
+      </div>
       <div class="input-container">
         <input type="text" id="message" value="Great job! You completed the task! 🙂">
-        <div id="input-cover">&#4502;</div>
+        <div id="input-cover"></div>
         <label class="switch">
           <input type="checkbox">
           <span class="slider"></span>

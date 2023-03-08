@@ -318,8 +318,9 @@ input:checked + .slider:before {
 .nav{
   position: fixed;
   /*top: calc((84.5+5.7) * var(--user-vh));*/
-  top: calc(93.3 * var(--user-vh));
+  /*top: calc(93.3 * var(--user-vh));*/
   bottom: 0;
+  height: calc(6.7 * var(--user-vh));
   width: 100%;
   background-color: #f9f9fa;
   padding: 20px 50px;

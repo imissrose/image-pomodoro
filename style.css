@@ -8,6 +8,10 @@ html, body {
 	height: calc(100 * var(--user-vh));
 }
 
+::-webkit-scrollbar {
+  display: none;
+  }
+
 .full-screen {
   display: flex;
   flex-direction: column;
@@ -48,7 +52,6 @@ html, body {
   color: gray;
   text-align: center;
   line-height: calc(84 * var(--user-vh)); /* Set the line-height equal to the container height to center the text vertically */
-  /*vertical-align: top;*/
 }
 
 .image-container img {
@@ -98,7 +101,7 @@ button:disabled {
 select {
   font-size: calc(2.5 * var(--user-vh));
   height: calc(5.5 * var(--user-vh));
-  width: calc(17.5 * var(--user-vh));
+  width: calc(17 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -107,7 +110,7 @@ select {
 label {
   font-size: calc(3 * var(--user-vh));
   /*padding-top: calc(0.2 * var(--user-vh));*/
-  line-height: calc(4.5 * var(--user-vh));
+  line-height: calc(4.7 * var(--user-vh));
 }
 
 input[type="number"] {
@@ -121,27 +124,36 @@ input[type="number"] {
 }
 
 input[type="text"] {
-  font-size: calc(2.5 * var(--user-vh));
+  font-size: calc(2 * var(--user-vh));
   color: gray;
   height: calc(4.8 * var(--user-vh));
-  width: calc(43 * var(--user-vh));
+  width: calc(42.5 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
   vertical-align: top;
   margin-right: calc(0.7 * var(--user-vh));
 }
-
+/*
 input[type="text"]:not(:focus) {
-  color: #f2f2f2; /* match the background color */
-}
+  color: #f2f2f2;
+}*/
 
 input[type="file"] {
   display: none;
 }
 
+.v-line{
+  border-left: thin solid lightgray;
+  height: calc(5.5 * var(--user-vh));
+  width: 1px;
+  /*left: 50%;*/
+  /*position: absolute;*/
+  vertical-align: center;
+}
+
 #upload-message {
-  font-size: calc(2.5 * var(--user-vh));
+  font-size: calc(2.3 * var(--user-vh));
   display: inline-block; /* Make the message a block-level element */
   vertical-align: middle; /* Vertically center the message within the container */
   line-height: normal; /* Reset the line-height to normal to prevent additional vertical space */
@@ -183,7 +195,7 @@ input[type="file"] {
   height: calc(3.8 * var(--user-vh));
   width: calc(3.8 * var(--user-vh));
   left: calc(0.65 * var(--user-vh));
-  bottom: calc(0.69 * var(--user-vh));
+  bottom: calc(0.6 * var(--user-vh));
   background-color: white;
   transition: .4s;
   border-radius: 50%;
@@ -210,12 +222,14 @@ input:checked + .slider:before {
 }
 
 .switch-label.on {
-  margin-left: .5em;
+  /*margin-left: .5em;*/
+  margin-left: calc(0.5 * var(--user-vh));
   color: #5cb85c;
 }
 
 .switch-label.off {
-  margin-right: .5em;
+  /*margin-right: .5em;*/
+  margin-right: calc(0.5 * var(--user-vh));
   color: #d9534f;
 }
 /* 알림 on/off end*/
@@ -235,7 +249,7 @@ input:checked + .slider:before {
 
 .modal-content {
   background-color: #fefefe;
-  margin: calc(5 * var(--user-vh)) auto;
+  margin: calc(35 * var(--user-vh)) auto;
   padding: calc(1.8 * var(--user-vh));
   border: 1px solid #888;
   width: calc(49 * var(--user-vh));
@@ -254,7 +268,8 @@ input:checked + .slider:before {
 }
 
 .modal-message {
-  font-size: calc(3 * var(--user-vh));
+  color: gray;
+  font-size: calc(2.2 * var(--user-vh));
   margin-bottom: calc(2 * var(--user-vh));
   word-wrap: break-word;
 }
@@ -297,4 +312,14 @@ input:checked + .slider:before {
   display: inline-block;
   vertical-align: top;
   align-items: left;
+}
+
+.nav{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f9f9fa;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(121,121,121,0.2);
 }

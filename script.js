@@ -376,8 +376,12 @@ function setViewportHeight() {
   user_vh = window.innerHeight * 0.01;
   user_vw = window.innerWidth * 0.01;
 
-  if (user_vw >= user_vh*9/16) {
+  if (user_vw > user_vh*9/16) {
     user_vw = user_vh*9/16;
+  }
+
+  if (user_vh > user_vw*16/9) {
+    user_vh = user_vw*16/9;
   }
   
   // Set the height of the viewport using the user_vh value

@@ -20,10 +20,12 @@
           <option value="top-down">Top-Down</option>
           <option value="bottom-up">Bottom-Up</option>
         </select>
-        <input type="number" id="minutes" value="25" min="0" max="99"><label>:</label><input type="number" id="seconds" value="00" min="0" max="60">
-        <button id="start"><i class="fas fa-play fa-lg"></i></button>
+        <div class="v-line"></div>
+        <div><input type="number" id="minutes" value="25" min="0" max="99"><label>:</label><input type="number" id="seconds" value="00" min="0" max="60"></div>
+        <div class="v-line"></div>
+        <div><button id="start"><i class="fas fa-play fa-lg"></i></button>
         <button id="pause"><i class="fas fa-pause fa-lg"></i></button>
-        <button id="stop"><i class="fas fa-stop fa-lg"></i></button>
+        <button id="stop"><i class="fas fa-stop fa-lg"></i></button></div>
       </div>
       <!--div class="button-container">
       </div-->
@@ -32,7 +34,7 @@
         Motivational message on timer completion
       </div></div>
       <div class="input-container">
-        <input type="text" id="message" value="Great job! You completed the task!">
+        <input type="text" id="message" value="Great job! You completed the task! 🙂">
         <label class="switch">
           <input type="checkbox">
           <span class="slider"></span>
@@ -47,6 +49,8 @@
         <!--button class="modal-ok">OK</button-->
       </div>
     </div>
+    <nav class="nav">&nbsp;</nav>
+    <div class="input-container"></div>
     <script src="https://kit.fontawesome.com/2ece379672.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </body>

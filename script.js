@@ -299,8 +299,8 @@ function singingbowl() {
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
   // set up the parameters for the sound
-  //const frequency = 440; // in hertz
-  const frequency = 75; // in hertz
+  const frequency = 440; // in hertz
+  //const frequency = 75; // in hertz
   const duration = 2; // in seconds
 
   // create the oscillator node

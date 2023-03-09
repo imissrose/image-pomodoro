@@ -186,17 +186,15 @@ input[type="file"] {
   font-size: calc(1.5 * var(--user-vh));
   margin-bottom: calc(0.5 * var(--user-vh));
   /*display: flex;*/
-  justify-content: center;
+  /*justify-content: center;*/
   align-items: center;
   vertical-align: center;
+  line-height: calc(1.7 * var(--user-vh));
 }
 
-.notification-label {
+#sound-checkbox, #vibration-checkbox {
   color: gray;
-  font-size: calc(1.5 * var(--user-vh));
-  width: calc(30 * var(--user-vh));
-  display: inline-block; /* Make the message a block-level element */
-  line-height: normal; /* Reset the line-height to normal to prevent additional vertical space */
+  vertical-align: middle;
 }
 
 /* 알림 on/off start */
@@ -361,7 +359,7 @@ input:checked + .slider:before {
   border-top: 1px solid rgba(121,121,121,0.2);
 }
 
-#input-cover, #lable-cover{
+#input-cover, #lable-cover {
   position: absolute;
   left: 0;
   height: 100vh;/*calc(5.5 * var(--user-vh));*/
@@ -378,6 +376,6 @@ input:checked + .slider:before {
   display: none;
 }
 
-#lable-cover{
+#lable-cover {
   border-top: 1px solid rgba(109, 109, 109, 0.2);
 }

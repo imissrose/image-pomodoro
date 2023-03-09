@@ -219,17 +219,13 @@ function showModal(message) {
 
 
 //
-// Initialize sound and vibration settings
-let isSoundOn = soundCheckbox.checked;
-let isVibrationOn = vibrationCheckbox.checked;
-
 let sound = new Howl({
   src: ['./Click13.wav']
 });
 
 // Function to play sound
 function playSound() {
-  if (isSoundOn) {
+  if (soundCheckbox.checked) {
     // Check if sound is loaded and playable
     if (sound.state() === 'loaded') {
       sound.play();
@@ -274,7 +270,7 @@ function toggleVibration() {
 */
 // Function to vibrate
 function vibrate() {
-  if (isVibrationOn && ('vibrate' in navigator)) {
+  if (vibrationCheckbox.checked && ('vibrate' in navigator)) {
     navigator.vibrate(200); // Vibrate for 200ms
   }
 }

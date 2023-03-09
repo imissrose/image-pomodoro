@@ -113,9 +113,10 @@ function updateTimer() {
       pauseButton.disabled = true;
       stopButton.disabled = false;
 
-      showNotification();
+      //showNotification();
       vibrateMorse(textToMorse('end'));
-      singingbowl();
+      //singingbowl();
+      silentVibration();
 
       if (toggleSwitch.checked) {
         showModal(messageInput.value);
@@ -328,6 +329,27 @@ function singingbowl() {
 
   // stop the oscillator after the duration of the sound
   oscillator.stop(audioCtx.currentTime + duration);
+}
+
+// 소리없는 진동
+function silentVibration() {
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // create audio context
+  const oscillator = audioCtx.createOscillator(); // create oscillator
+  const gainNode = audioCtx.createGain(); // create gain node
+  const duration = 0.5; // in seconds
+
+  oscillator.connect(gainNode); // connect oscillator to gain node
+  gainNode.connect(audioCtx.destination); // connect gain node to audio context destination
+
+  oscillator.frequency.value = 100; // set frequency to 100 Hz
+  //oscillator.frequency.value = 70;
+  gainNode.gain.value = 1; // set gain to maximum
+
+   // start the oscillator
+   oscillator.start();
+ 
+   // stop the oscillator after the duration of the sound
+   oscillator.stop(audioCtx.currentTime + duration);
 }
 
 document.addEventListener('load', function() {

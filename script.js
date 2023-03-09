@@ -58,6 +58,9 @@ function startTimer() {
 
     showInputCover();
     saveTimerSettings();
+
+    // 스크롤 막기
+    document.body.style.overflow = "hidden";
   } else {
     timerId = setInterval(updateTimer, 1000);
   }
@@ -101,6 +104,9 @@ function stopTimer() {
   image.style.transform = '';
   image.style.clipPath = '';
   hideInputCover();
+
+  // 스크롤 허용하기
+  document.body.style.overflow = "auto";
 }
 
 function updateTimer() {

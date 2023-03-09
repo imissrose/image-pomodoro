@@ -59,7 +59,7 @@ html, body {
   width: calc(95 * var(--user-vw));
   height: calc((84-6) * var(--user-vh));
   /*margin-bottom: 1vh;*/
-  margin-bottom: calc(0.5 * var(--user-vh));
+  margin-bottom: calc(0.7 * var(--user-vh));
   overflow: hidden;
   border: 1px solid lightgray;
   font-size: calc(2 * var(--user-vh));
@@ -84,7 +84,7 @@ html, body {
   width: calc(95 * var(--user-vw));
   height: calc(5.5 * var(--user-vh));
   font-size: calc(3 * var(--user-vh));
-  margin-bottom: calc(0.5 * var(--user-vh));
+  margin-bottom: calc(0.7 * var(--user-vh));
   display: flex;
   justify-content: space-between;
 }
@@ -179,11 +179,18 @@ input[type="file"] {
   align-items: center;
 }
 
+.line {
+  width: calc(95 * var(--user-vw));
+  height: calc(1.1 * var(--user-vw));
+  border : 0px;
+  border-top: thin solid lightgray;
+}
+
 .setting-container {
   width: calc(95 * var(--user-vw));
-  height: calc(5.5 * var(--user-vh));
+  height: calc(4.6 * var(--user-vh));
   color: gray;
-  font-size: calc(1.5 * var(--user-vh));
+  font-size: calc(1.54 * var(--user-vh));
   margin-bottom: calc(0.5 * var(--user-vh));
   /*display: flex;*/
   /*justify-content: center;*/
@@ -327,7 +334,8 @@ input:checked + .slider:before {
   position: relative;
   /*width: calc(53.4 * var(--user-vh));*/ /*9/16vh*100*95%;*/
   width: calc(95 * var(--user-vw));
-  height: calc(2 * var(--user-vh));
+  height: calc(2.3 * var(--user-vh));
+  /*margin-bottom: calc(0.1 * var(--user-vh));;*/
   overflow: hidden;
   font-size: calc(1.6 * var(--user-vh));
   color: gray;

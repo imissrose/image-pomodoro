@@ -497,7 +497,7 @@ function loadTimerSettings() {
   if (isWebBrowser) {
     // check if cookies exist and get their values
     if (document.cookie) {
-      const data = JSON.parse(document.cookie);
+      const data = JSON.parse(document.cookie.replace("pomodoroData=", ""));
       if (data) {
         /*image.src = data.imagePath;
         image.addEventListener('error', function() {

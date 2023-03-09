@@ -113,13 +113,14 @@ function updateTimer() {
       pauseButton.disabled = true;
       stopButton.disabled = false;
 
-      requestWakeLock();
+      //requestWakeLock(); //반응 없음
       //showNotification();
       vibrateMorse(textToMorse('end'));
       //singingbowl();
       //silentVibration();
-      releaseWakeLock();
-      
+      //releaseWakeLock(); //반응 없음
+      howler();
+
       if (toggleSwitch.checked) {
         showModal(messageInput.value);
       }
@@ -373,6 +374,20 @@ function releaseWakeLock() {
     wakeLock.release();
     wakeLock = null;
   }
+}
+
+function howler() {
+  var sound = new Howl({
+    src: ['./Click13.wav']
+  });
+
+  // Play the sound
+  sound.play();
+
+  // Stop the sound after 3 seconds
+  //setTimeout(function() {
+  //  sound.stop();
+  //}, 1000);
 }
 
 document.addEventListener('load', function() {

@@ -12,8 +12,8 @@ const imageBox = document.querySelector('.image-container');
 const messageInput = document.getElementById("message");
 //const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
 const toggleSwitch = document.getElementById("message-toggle");
-//const notificationToggle = document.getElementById("notification-toggle");
-//const vibrationToggle = document.getElementById("vibration-toggle");
+const soundCheckbox = document.getElementById("sound-checkbox");
+const vibrationCheckbox = document.getElementById("vibration-checkbox");
 
 // Set default values
 let minutes = 0;
@@ -113,13 +113,14 @@ function updateTimer() {
       pauseButton.disabled = true;
       stopButton.disabled = false;
 
+      vibrate();
+      playSound();
       //requestWakeLock(); //반응 없음
       //showNotification();
-      vibrateMorse(textToMorse('end'));
+      //vibrateMorse(textToMorse('end'));
       //singingbowl();
       //silentVibration();
       //releaseWakeLock(); //반응 없음
-      howler();
 
       if (toggleSwitch.checked) {
         showModal(messageInput.value);
@@ -216,6 +217,69 @@ function showModal(message) {
   };
 }
 
+
+//
+// Initialize sound and vibration settings
+let isSoundOn = soundCheckbox.checked;
+let isVibrationOn = vibrationCheckbox.checked;
+
+let sound = new Howl({
+  src: ['./Click13.wav']
+});
+
+// Function to play sound
+function playSound() {
+  if (isSoundOn) {
+    // Check if sound is loaded and playable
+    if (sound.state() === 'loaded') {
+      sound.play();
+
+      // Stop the sound after 3 seconds
+      //setTimeout(function() {
+      //  sound.stop();
+      //}, 1000);
+    } else {
+      console.log('Error: Sound file not loaded or playable');
+    }
+  }
+}
+/*
+// Function to toggle vibration setting
+function toggleVibration() {
+  if (hasVibrationSupport) {
+    // Request permission for vibration
+    navigator.permissions.query({name: 'vibrate'}).then((result) => {
+      if (result.state === 'granted') {
+        isVibrationOn = !isVibrationOn;
+        vibrate();
+      } else if (result.state === 'prompt') {
+        // Show permission request dialog
+        navigator.vibrate(100); // Vibrate to indicate permission request
+        result.onchange = () => {
+          isVibrationOn = result.state === 'granted';
+          vibrate();
+        };
+      } else {
+        // Permission denied or not supported
+        isVibrationOn = false;
+      }
+    }).catch(() => {
+      // Permission request failed
+      isVibrationOn = false;
+    });
+  } else {
+    isVibrationOn = false;
+  }
+}
+*/
+// Function to vibrate
+function vibrate() {
+  if (isVibrationOn && ('vibrate' in navigator)) {
+    navigator.vibrate(200); // Vibrate for 200ms
+  }
+}
+
+/*
 // 타이머 종료시 핸드폰 깜빡임
 // 화면 잠금 상태에서는 실행안됨
 // 앱이 백그라운드에서 실행 중일 때도 알림이 전달되도록 하려면 Android 및 iOS 모두에 대한 알림 설정해야 하나 import하자마자 css 깨짐
@@ -224,20 +288,20 @@ function showModal(message) {
 // 진동은 화면 잠금 상태에서도 처리된다고 함. 사용자가 인지 못할 수 있고 왜 진동이 왔는지 확인 못함.
 // wake lock으로 화면 잠금시 잠금을 풀수도 있지만, 모든 브라우저에서 동작하진 않음
 function showNotification() {
-  /*
+  
   // Add blinking light effect
-  let intervalId;
-  let blinkDuration = 1000; // blink every second
-  let blinkCount = 10; // blink for 10 seconds
-  let blinkColor = 'red'; // color to blink
-  let bodyEl = document.querySelector('body'); // select body element
+  //let intervalId;
+  //let blinkDuration = 1000; // blink every second
+  //let blinkCount = 10; // blink for 10 seconds
+  //let blinkColor = 'red'; // color to blink
+  //let bodyEl = document.querySelector('body'); // select body element
   
   // start blinking
-  intervalId = setInterval(() => {
-    bodyEl.style.backgroundColor = bodyEl.style.backgroundColor === blinkColor ? '' : blinkColor;
-    blinkCount--;
-    if (blinkCount === 0) clearInterval(intervalId); // stop blinking after 10 seconds
-  }, blinkDuration);*/
+  //intervalId = setInterval(() => {
+  //  bodyEl.style.backgroundColor = bodyEl.style.backgroundColor === blinkColor ? '' : blinkColor;
+  //  blinkCount--;
+  //  if (blinkCount === 0) clearInterval(intervalId); // stop blinking after 10 seconds
+  //}, blinkDuration);
 
   // If it's not touch base, return
   if (!('ontouchstart' in window)) return;
@@ -257,7 +321,8 @@ function showNotification() {
     });
   }
 }
-
+*/
+/*
 // 모스부호 start
 // Define Morse code dictionary
 const morseDict = {
@@ -296,7 +361,8 @@ function vibrateMorse(morseCode) {
   }
 }
 // 모스 부호 end
-
+*/
+/*
 // 싱잉볼
 function singingbowl() {
   // create the AudioContext
@@ -333,7 +399,8 @@ function singingbowl() {
   // stop the oscillator after the duration of the sound
   oscillator.stop(audioCtx.currentTime + duration);
 }
-
+*/
+/*
 // 소리없는 진동
 // 스마트폰에서 거의 느껴지지 않음
 function silentVibration() {
@@ -355,7 +422,8 @@ function silentVibration() {
    // stop the oscillator after the duration of the sound
    oscillator.stop(audioCtx.currentTime + duration);
 }
-
+*/
+/*
 // 잠금 깨우기
 let wakeLock = null;
 
@@ -375,20 +443,7 @@ function releaseWakeLock() {
     wakeLock = null;
   }
 }
-
-function howler() {
-  var sound = new Howl({
-    src: ['./Click13.wav']
-  });
-
-  // Play the sound
-  sound.play();
-
-  // Stop the sound after 3 seconds
-  //setTimeout(function() {
-  //  sound.stop();
-  //}, 1000);
-}
+*/
 
 document.addEventListener('load', function() {
   // code to be executed when the document is fully loaded
@@ -477,7 +532,9 @@ function saveTimerSettings() {
     minutes: `${minutesInput.value}`,
     seconds: `${secondsInput.value}`,
     message: `${messageInput.value}`,
-    notifications: `${toggleSwitch.checked}`
+    enableMessage: `${toggleSwitch.checked}`,
+    enableSound: `${soundCheckbox.checked}`,
+    enableVibration: `${vibrationCheckbox.checked}`
   };
 
   if (isWebBrowser) {
@@ -507,7 +564,9 @@ function loadTimerSettings() {
         minutesInput.value = data.minutes;
         secondsInput.value = data.seconds;
         messageInput.value = data.message;
-        toggleSwitch.checked = (data.notifications==="true")?true:false;
+        toggleSwitch.checked = (data.enableMessage==="true")?true:false;
+        soundCheckbox.checked = (data.enableSound==="true")?true:false;
+        vibrationCheckbox.checked = (data.enableVibration==="true")?true:false;
       }
     }
 
@@ -523,7 +582,9 @@ function loadTimerSettings() {
       minutesInput.value = data.minutes;
       secondsInput.value = data.seconds;
       messageInput.value = data.message;
-      toggleSwitch.checked = (data.notifications==="true")?true:false;
+      toggleSwitch.checked = (data.enableMessage==="true")?true:false;
+      soundCheckbox.checked = (data.enableSound==="true")?true:false;
+      vibrationCheckbox.checked = (data.enableVibration==="true")?true:false;
     }
   }
 }

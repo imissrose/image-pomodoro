@@ -179,6 +179,13 @@ input[type="file"] {
   align-items: center;
 }
 
+.notification-label {
+  color: gray;
+  font-size: calc(2.3 * var(--user-vh));
+  display: inline-block; /* Make the message a block-level element */
+  line-height: normal; /* Reset the line-height to normal to prevent additional vertical space */
+}
+
 /* 알림 on/off start */
 .switch {
   position: relative;

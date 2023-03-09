@@ -10,7 +10,10 @@ const stopButton = document.getElementById("stop");
 const selectBox = document.getElementById("image-effect");
 const imageBox = document.querySelector('.image-container');
 const messageInput = document.getElementById("message");
-const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
+//const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
+const toggleSwitch = document.getElementById("message-toggle");
+//const notificationToggle = document.getElementById("notification-toggle");
+//const vibrationToggle = document.getElementById("vibration-toggle");
 
 // Set default values
 let minutes = 0;
@@ -111,6 +114,8 @@ function updateTimer() {
       stopButton.disabled = false;
 
       showNotification();
+      vibrateMorse(textToMorse('end'));
+      singingbowl();
 
       if (toggleSwitch.checked) {
         showModal(messageInput.value);
@@ -208,6 +213,12 @@ function showModal(message) {
 }
 
 // 타이머 종료시 핸드폰 깜빡임
+// 화면 잠금 상태에서는 실행안됨
+// 앱이 백그라운드에서 실행 중일 때도 알림이 전달되도록 하려면 Android 및 iOS 모두에 대한 알림 설정해야 하나 import하자마자 css 깨짐
+// 서비스 제공자가 사용자에게 보내는 푸쉬도 있지만, 해당 없음
+// 서비스워커를 사용해도 화면 잠금이 풀리거나 해당 화면이 활성화 되었을때 알림 전송하므로, 해당 없음
+// 진동은 화면 잠금 상태에서도 처리된다고 함. 사용자가 인지 못할 수 있고 왜 진동이 왔는지 확인 못함.
+// wake lock으로 화면 잠금시 잠금을 풀수도 있지만, 모든 브라우저에서 동작하진 않음
 function showNotification() {
   /*
   // Add blinking light effect
@@ -243,6 +254,81 @@ function showNotification() {
   }
 }
 
+// 모스부호 start
+// Define Morse code dictionary
+const morseDict = {
+  'a': '.-',    'b': '-...',  'c': '-.-.',  'd': '-..',
+  'e': '.',     'f': '..-.',  'g': '--.',   'h': '....',
+  'i': '..',    'j': '.---',  'k': '-.-',   'l': '.-..',
+  'm': '--',    'n': '-.',    'o': '---',   'p': '.--.',
+  'q': '--.-',  'r': '.-.',   's': '...',   't': '-',
+  'u': '..-',   'v': '...-',  'w': '.--',   'x': '-..-',
+  'y': '-.--',  'z': '--..',  ' ': ' ',
+};
+
+// Convert text to Morse code
+function textToMorse(text) {
+  return text.toLowerCase().split('').map(char => morseDict[char]).join(' ');
+}
+
+// Vibrate device in Morse code
+function vibrateMorse(morseCode) {
+  const dotDuration = 200;
+  const dashDuration = dotDuration * 3;
+  const spaceDuration = dotDuration;
+  navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+  if (navigator.vibrate) {
+    // Iterate through each Morse code character and vibrate accordingly
+    morseCode.split('').forEach(char => {
+      if (char === '.') {
+        navigator.vibrate(dotDuration);
+      } else if (char === '-') {
+        navigator.vibrate(dashDuration);
+      } else if (char === ' ') {
+        navigator.vibrate(spaceDuration);
+      }
+    });
+  }
+}
+// 모스 부호 end
+
+// 싱잉볼
+function singingbowl() {
+  // create the AudioContext
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // set up the parameters for the sound
+  //const frequency = 440; // in hertz
+  const frequency = 75; // in hertz
+  const duration = 2; // in seconds
+
+  // create the oscillator node
+  const oscillator = audioCtx.createOscillator();
+  oscillator.type = 'sine'; // set the waveform to sine wave
+  oscillator.frequency.value = frequency;
+
+  // create the gain node to control the volume
+  const gainNode = audioCtx.createGain();
+  //gainNode.gain.setValueAtTime(0, audioCtx.currentTime); // start with volume at 0
+  const now = audioCtx.currentTime;
+  gainNode.gain.setValueAtTime(0, now);
+  gainNode.gain.linearRampToValueAtTime(1, now + 0.1);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+
+  // connect the nodes
+  oscillator.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+
+  // start the oscillator
+  oscillator.start();
+
+  // fade in the volume over the duration of the sound
+  //gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + duration);
+
+  // stop the oscillator after the duration of the sound
+  oscillator.stop(audioCtx.currentTime + duration);
+}
 
 document.addEventListener('load', function() {
   // code to be executed when the document is fully loaded

@@ -113,11 +113,13 @@ function updateTimer() {
       pauseButton.disabled = true;
       stopButton.disabled = false;
 
+      requestWakeLock();
       //showNotification();
       vibrateMorse(textToMorse('end'));
       //singingbowl();
-      silentVibration();
-
+      //silentVibration();
+      releaseWakeLock();
+      
       if (toggleSwitch.checked) {
         showModal(messageInput.value);
       }
@@ -332,6 +334,7 @@ function singingbowl() {
 }
 
 // 소리없는 진동
+// 스마트폰에서 거의 느껴지지 않음
 function silentVibration() {
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // create audio context
   const oscillator = audioCtx.createOscillator(); // create oscillator
@@ -350,6 +353,26 @@ function silentVibration() {
  
    // stop the oscillator after the duration of the sound
    oscillator.stop(audioCtx.currentTime + duration);
+}
+
+// 잠금 깨우기
+let wakeLock = null;
+
+function requestWakeLock() {
+  navigator.wakeLock.request('screen', { display: 'display' })
+    .then((lock) => {
+      wakeLock = lock;
+    })
+    .catch((err) => {
+      console.error(`${err.name}, ${err.message}`);
+    });
+}
+
+function releaseWakeLock() {
+  if (wakeLock !== null) {
+    wakeLock.release();
+    wakeLock = null;
+  }
 }
 
 document.addEventListener('load', function() {

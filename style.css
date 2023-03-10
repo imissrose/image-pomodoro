@@ -57,7 +57,7 @@ html, body {
   position: relative;
   /*width: calc(53.4 * var(--user-vh));*/ /*9/16vh*100*95%=53.4*/
   width: calc(95 * var(--user-vw));
-  height: calc((84-6) * var(--user-vh));
+  height: calc((84-8) * var(--user-vh));
   /*margin-bottom: 1vh;*/
   margin-bottom: calc(0.7 * var(--user-vh));
   overflow: hidden;
@@ -65,7 +65,7 @@ html, body {
   font-size: calc(2 * var(--user-vh));
   color: gray;
   text-align: center;
-  line-height: calc((84-6) * var(--user-vh)); /* Set the line-height equal to the container height to center the text vertically */
+  line-height: calc((84-8) * var(--user-vh)); /* Set the line-height equal to the container height to center the text vertically */
 }
 
 .image-container img {
@@ -181,16 +181,16 @@ input[type="file"] {
 
 .line {
   width: calc(95 * var(--user-vw));
-  height: calc(1.1 * var(--user-vw));
+  height: calc(2.5 * var(--user-vw));
   border : 0px;
   border-top: thin solid lightgray;
 }
 
 .setting-container {
   width: calc(95 * var(--user-vw));
-  height: calc(4.6 * var(--user-vh));
+  height: calc(5.5 * var(--user-vh));
   color: gray;
-  font-size: calc(1.54 * var(--user-vh));
+  font-size: calc(1.7 * var(--user-vh));
   margin-bottom: calc(0.5 * var(--user-vh));
   /*display: flex;*/
   /*justify-content: center;*/
@@ -354,17 +354,8 @@ input:checked + .slider:before {
   align-items: left;
 }
 
-.nav {
-  position: fixed;
-  /*top: calc((84.5+5.7) * var(--user-vh));*/
-  /*top: calc(93.3 * var(--user-vh));*/
-  bottom: 0;
-  height: calc(6.7 * var(--user-vh));
-  width: 100%;
-  background-color: #f9f9fa;
-  padding: 20px 50px;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(121,121,121,0.2);
+#lable-cover {
+  border-top: 1px solid rgba(109, 109, 109, 0.2);
 }
 
 #input-cover, #lable-cover {
@@ -384,6 +375,15 @@ input:checked + .slider:before {
   display: none;
 }
 
-#lable-cover {
-  border-top: 1px solid rgba(109, 109, 109, 0.2);
+.nav {
+  position: fixed;
+  /*top: calc((84.5+5.7) * var(--user-vh));*/
+  /*top: calc(93.3 * var(--user-vh));*/
+  bottom: 0;
+  height: calc(6.7 * var(--user-vh));
+  width: 100%;
+  background-color: #f9f9fa;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(121,121,121,0.2);
 }

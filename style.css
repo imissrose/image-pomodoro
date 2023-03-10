@@ -367,7 +367,7 @@ input:checked + .slider:before {
   /*position: absolute;*/
   z-index: 1;
   background-color: white;
-  border: 1px;
+  /*border: 1px;*/
   text-align: center;
   vertical-align: top;
   color: rgba(121,121,121,0.2);

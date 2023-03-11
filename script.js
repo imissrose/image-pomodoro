@@ -68,7 +68,11 @@ function startTimer() {
   pauseButton.disabled = false;
   stopButton.disabled = false;
 
-  hideInputCover();  // 키보드 입력하다가 시작 버튼 클릭할 경우 화면이 원위치 하도록
+  // 키보드 닫기 위해 input box에 포커스 blur
+  minutesInput.blur();
+  secondsInput.blur();
+  messageInput.blur();
+
   showInputCover();
 }
 

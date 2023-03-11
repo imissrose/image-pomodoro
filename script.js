@@ -63,8 +63,6 @@ function startTimer() {
 
     saveTimerSettings();
 
-    // 스크롤 막기
-    document.body.style.overflow = "hidden";
   } else {
     timerId = setInterval(updateTimer, 1000);
   }
@@ -74,6 +72,9 @@ function startTimer() {
   stopButton.disabled = false;
 
   showInputCover();
+
+  // 스크롤 막기
+  document.body.style.overflow = "hidden";
 }
 
 function pauseTimer() {

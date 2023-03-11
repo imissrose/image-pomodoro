@@ -625,3 +625,6 @@ function setViewportHeight() {
   document.documentElement.style.setProperty("--user-vh", `${user_vh}px`);
   document.documentElement.style.setProperty("--user-vw", `${user_vw}px`);
 }
+
+// 세로 모드
+//screen.lockOrientation('portrait');

@@ -71,6 +71,7 @@ function startTimer() {
   pauseButton.disabled = false;
   stopButton.disabled = false;
 
+  hideInputCover();
   showInputCover();
 
   // 스크롤 막기

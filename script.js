@@ -56,7 +56,6 @@ function startTimer() {
     minutesInput.disabled = true;
     secondsInput.disabled = true;
 
-    showInputCover();
     saveTimerSettings();
 
     // 스크롤 막기
@@ -68,6 +67,7 @@ function startTimer() {
   startButton.disabled = true;
   pauseButton.disabled = false;
   stopButton.disabled = false;
+  showInputCover();
 }
 
 function pauseTimer() {
@@ -75,6 +75,7 @@ function pauseTimer() {
   clearInterval(timerId);
   startButton.disabled = false;
   pauseButton.disabled = true;
+  hideInputCover();
 /*
   isPaused = !isPaused;
   if (isPaused) {

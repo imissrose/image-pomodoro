@@ -67,6 +67,8 @@ function startTimer() {
   startButton.disabled = true;
   pauseButton.disabled = false;
   stopButton.disabled = false;
+
+  hideInputCover();  // 키보드 입력하다가 시작 버튼 클릭할 경우 화면이 원위치 하도록
   showInputCover();
 }
 

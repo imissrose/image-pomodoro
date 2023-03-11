@@ -627,4 +627,4 @@ function setViewportHeight() {
 }
 
 // 세로 모드
-//screen.lockOrientation('portrait');
+screen.lockOrientation('portrait');

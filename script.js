@@ -34,6 +34,11 @@ let imageWidth = 0;
 let revealType;
 // Functions
 function startTimer() {
+  // 키보드 닫기 위해 input box에 포커스 blur
+  minutesInput.blur();
+  secondsInput.blur();
+  messageInput.blur();
+  
   if (!timerId) {
     revealType = selectBox.value;
     initMinutes = minutesInput.value;
@@ -52,11 +57,6 @@ function startTimer() {
     }
     timerId = setInterval(updateTimer, 1000);
     
-    // 키보드 닫기 위해 input box에 포커스 blur
-    minutesInput.blur();
-    secondsInput.blur();
-    messageInput.blur();
-
     selectBox.disabled = true;
     minutesInput.disabled = true;
     secondsInput.disabled = true;

@@ -38,7 +38,7 @@ function startTimer() {
   minutesInput.blur();
   secondsInput.blur();
   messageInput.blur();
-  
+  alert('1');
   if (!timerId) {
     revealType = selectBox.value;
     initMinutes = minutesInput.value;

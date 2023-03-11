@@ -52,6 +52,11 @@ function startTimer() {
     }
     timerId = setInterval(updateTimer, 1000);
     
+    // 키보드 닫기 위해 input box에 포커스 blur
+    minutesInput.blur();
+    secondsInput.blur();
+    messageInput.blur();
+
     selectBox.disabled = true;
     minutesInput.disabled = true;
     secondsInput.disabled = true;
@@ -67,11 +72,6 @@ function startTimer() {
   startButton.disabled = true;
   pauseButton.disabled = false;
   stopButton.disabled = false;
-
-  // 키보드 닫기 위해 input box에 포커스 blur
-  minutesInput.blur();
-  secondsInput.blur();
-  messageInput.blur();
 
   showInputCover();
 }

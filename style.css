@@ -65,7 +65,14 @@ html, body {
   font-size: calc(2 * var(--user-vh));
   color: gray;
   text-align: center;
-  line-height: calc((84-8) * var(--user-vh)); /* Set the line-height equal to the container height to center the text vertically */
+  /*line-height: calc((84-8) * var(--user-vh));*/ /* Set the line-height equal to the container height to center the text vertically */
+}
+
+.full-box {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .image-container img {
@@ -171,6 +178,7 @@ input[type="file"] {
   display: inline-block; /* Make the message a block-level element */
   vertical-align: middle; /* Vertically center the message within the container */
   line-height: normal; /* Reset the line-height to normal to prevent additional vertical space */
+  align-self: center;
 }
   
 .button-container {

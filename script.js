@@ -35,10 +35,13 @@ let revealType;
 // Functions
 function startTimer() {
   // 키보드 닫기 위해 input box에 포커스 blur
+  setTimeout(minutesInput.value = 1, 1000);
   minutesInput.blur();
+  setTimeout(minutesInput.value = 2, 1000);
   secondsInput.blur();
+  setTimeout(minutesInput.value = 3, 1000);
   messageInput.blur();
-  alert('1');
+  setTimeout(minutesInput.value = 4, 1000);
   if (!timerId) {
     revealType = selectBox.value;
     initMinutes = minutesInput.value;
@@ -70,8 +73,9 @@ function startTimer() {
   startButton.disabled = true;
   pauseButton.disabled = false;
   stopButton.disabled = false;
-
+  setTimeout(minutesInput.value = 5, 1000);
   hideInputCover();
+  setTimeout(minutesInput.value = 6, 1000);
   showInputCover();
 
   // 스크롤 막기

@@ -32,10 +32,9 @@ stopButton.addEventListener("click", stopTimer);
 
 let imageWidth = 0;
 let revealType;
+
 // Functions
-/*async*/ function startTimer() {
-  // 키보드 닫기 위해 delay
-  //await delay(500);
+async function startTimer() {
 
   if (!timerId) {
     revealType = selectBox.value;
@@ -72,6 +71,7 @@ let revealType;
   // 스크롤 막기
   document.body.style.overflow = "hidden";
 }
+
 /*
 async function delay(ms) {
   return new Promise((resolve) => {
@@ -87,15 +87,6 @@ function pauseTimer() {
   startButton.disabled = false;
   pauseButton.disabled = true;
   hideInputCover();
-/*
-  isPaused = !isPaused;
-  if (isPaused) {
-    clearInterval(timerId);
-    pauseButton.innerHTML = "Resume";
-  } else {
-    timerId = setInterval(updateTimer, 1000);
-    pauseButton.innerHTML = "Pause";
-  }*/
 }
 
 function stopTimer() {
@@ -235,8 +226,7 @@ function showModal(message) {
   };
 }
 
-
-//
+// 마우스 클릭하는 소리
 let sound = new Howl({
   src: ['./Click13.wav']
 });
@@ -639,4 +629,17 @@ function setViewportHeight() {
 }
 
 // 세로 모드
-screen.lockOrientation('portrait');
+//screen.lockOrientation('portrait');
+window.addEventListener("orientationchange", function() {
+  var orientation = window.orientation;
+
+  switch(orientation) {
+    case 90:
+    case -90:
+      screen.lockOrientation("portrait");
+      break;
+    default:
+      screen.unlockOrientation();
+      break;
+  }
+}, false);

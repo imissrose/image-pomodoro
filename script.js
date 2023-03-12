@@ -35,7 +35,7 @@ let revealType;
 
 // Functions
 async function startTimer() {
-  await delay(1000);
+  await delay(500);
 
   if (!timerId) {
     revealType = selectBox.value;

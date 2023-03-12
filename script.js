@@ -35,7 +35,7 @@ let revealType;
 // Functions
 async function startTimer() {
   // 키보드 닫기 위해 delay
-  await delay(500);
+  //await delay(500);
 
   if (!timerId) {
     revealType = selectBox.value;

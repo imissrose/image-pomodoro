@@ -87,6 +87,9 @@ function pauseTimer() {
   startButton.disabled = false;
   pauseButton.disabled = true;
   hideInputCover();
+
+  // 스크롤 허용하기
+  document.body.style.overflow = "auto";
 }
 
 function stopTimer() {

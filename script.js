@@ -34,18 +34,9 @@ let imageWidth = 0;
 let revealType;
 // Functions
 async function startTimer() {
-  // 키보드 닫기 위해 input box에 포커스 blur
-  await delay(2000);
-  minutesInput.value = 1
-  minutesInput.blur();
-  await delay(2000);
-  minutesInput.value = 2
-  secondsInput.blur();
-  await delay(2000);
-  minutesInput.value = 3
-  messageInput.blur();
-  await delay(2000);
-  minutesInput.value = 4
+  // 키보드 닫기 위해 delay
+  await delay(500);
+
   if (!timerId) {
     revealType = selectBox.value;
     initMinutes = minutesInput.value;
@@ -67,7 +58,6 @@ async function startTimer() {
     selectBox.disabled = true;
     minutesInput.disabled = true;
     secondsInput.disabled = true;
-
     saveTimerSettings();
 
   } else {
@@ -77,11 +67,6 @@ async function startTimer() {
   startButton.disabled = true;
   pauseButton.disabled = false;
   stopButton.disabled = false;
-  await delay(2000);
-  minutesInput.value = 5
-  hideInputCover();
-  await delay(2000);
-  minutesInput.value = 6
   showInputCover();
 
   // 스크롤 막기

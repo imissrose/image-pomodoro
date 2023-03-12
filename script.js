@@ -33,7 +33,7 @@ stopButton.addEventListener("click", stopTimer);
 let imageWidth = 0;
 let revealType;
 // Functions
-async function startTimer() {
+/*async*/ function startTimer() {
   // 키보드 닫기 위해 delay
   //await delay(500);
 
@@ -72,14 +72,14 @@ async function startTimer() {
   // 스크롤 막기
   document.body.style.overflow = "hidden";
 }
-
+/*
 async function delay(ms) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, ms);
   });
-}
+}*/
 
 function pauseTimer() {
   isPaused = !isPaused;

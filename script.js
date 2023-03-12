@@ -35,7 +35,7 @@ let revealType;
 
 // Functions
 async function startTimer() {
-  await delay(500);
+  await delay(100);
 
   if (!timerId) {
     revealType = selectBox.value;
@@ -73,14 +73,13 @@ async function startTimer() {
   document.body.style.overflow = "hidden";
 }
 
-/*
 async function delay(ms) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, ms);
   });
-}*/
+}
 
 function pauseTimer() {
   isPaused = !isPaused;

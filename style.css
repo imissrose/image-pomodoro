@@ -122,10 +122,11 @@ button:disabled {
 select {
   font-size: calc(2.5 * var(--user-vh));
   height: calc(5.5 * var(--user-vh));
-  width: calc(17 * var(--user-vh));
+  width: calc(16.5 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
+  padding: calc(0.5 * var(--user-vh));
 }
 
 label {
@@ -148,12 +149,14 @@ input[type="text"] {
   font-size: calc(2 * var(--user-vh));
   color: gray;
   height: calc(4.8 * var(--user-vh));
-  width: calc(42.5 * var(--user-vh));
+  width: calc(42 * var(--user-vh));
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
   vertical-align: top;
   margin-right: calc(0.7 * var(--user-vh));
+  padding-left: calc(0.5 * var(--user-vh));
+  padding-right: calc(0.5 * var(--user-vh));
 }
 /*
 input[type="text"]:not(:focus) {
